@@ -1,14 +1,18 @@
-import { Entity, PrimaryGeneratedColumn,Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { ObjectType, Field, Int } from "@nestjs/graphql";
 
-@Entity('users')
-export class User{
+@ObjectType() // Expose the entity as a GraphQL object type
+@Entity('users') // Name of the database table
+export class User {
     @PrimaryGeneratedColumn()
-    id:number;
+    @Field(() => Int) // Expose this field in the GraphQL schema
+    id: number;
 
-    @Column({unique:true})
-    email:string;
+    @Column({ unique: true })
+    @Field() // Expose this field in the GraphQL schema
+    email: string;
 
     @Column()
-    password : string;
-
+    @Field() // Expose this field in the GraphQL schema
+    password: string; // The hashed password
 }

@@ -32,7 +32,7 @@ export class UserService {
             throw new UnauthorizedException('Invaild credential')
         }
 
-        const token = jwt.sing(
+        const token = jwt.sign(
             {id: user.id, email:user.email} ,
             "secretkey", 
             {expiresIn : '1h'}
